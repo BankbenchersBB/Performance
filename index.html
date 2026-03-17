@@ -1,0 +1,1701 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishwa Gami — Performance Portfolio 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0a1628;
+        --navy-mid: #112240;
+        --navy-light: #1b3460;
+        --accent: #2563eb;
+        --accent-bright: #3b82f6;
+        --accent-glow: #60a5fa;
+        --gold: #f59e0b;
+        --teal: #0ea5e9;
+        --white: #ffffff;
+        --gray-100: #f1f5f9;
+        --gray-200: #e2e8f0;
+        --gray-400: #94a3b8;
+        --gray-600: #475569;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(255, 255, 255, 0.08);
+        --card-hover: rgba(37, 99, 235, 0.12);
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--navy);
+        color: var(--white);
+        overflow-x: hidden;
+      }
+
+      /* ── NOISE TEXTURE OVERLAY ── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(10, 22, 40, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--card-border);
+        transition: all 0.3s;
+      }
+
+      .nav-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: 0.5px;
+      }
+
+      .nav-logo span {
+        color: var(--accent-glow);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--gray-400);
+        text-decoration: none;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent-glow);
+      }
+
+      .nav-badge {
+        font-family: "DM Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--accent-glow);
+        background: rgba(96, 165, 250, 0.1);
+        border: 1px solid rgba(96, 165, 250, 0.25);
+        padding: 5px 14px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+      }
+
+      /* ── HERO ── */
+      #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 48px 80px;
+        overflow: hidden;
+      }
+
+      .hero-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 20%,
+          transparent 80%
+        );
+      }
+
+      .hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+      }
+
+      .hero-orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(37, 99, 235, 0.25) 0%,
+          transparent 70%
+        );
+        top: -100px;
+        right: -100px;
+        animation: orbFloat 8s ease-in-out infinite;
+      }
+
+      .hero-orb-2 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(14, 165, 233, 0.15) 0%,
+          transparent 70%
+        );
+        bottom: 50px;
+        left: 10%;
+        animation: orbFloat 10s ease-in-out infinite reverse;
+      }
+
+      @keyframes orbFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-30px) scale(1.05);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+      }
+
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--accent-glow);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.2s forwards;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: var(--accent-glow);
+      }
+
+      .hero-name {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -2px;
+        margin-bottom: 16px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.4s forwards;
+      }
+
+      .hero-name .line-2 {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .hero-role {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: var(--gray-400);
+        margin-bottom: 40px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.6s forwards;
+      }
+
+      .hero-role strong {
+        color: var(--accent-glow);
+        font-weight: 600;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 48px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.8s forwards;
+      }
+
+      .hero-stat {
+        text-align: left;
+      }
+
+      .hero-stat-number {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1;
+      }
+
+      .hero-stat-number span {
+        color: var(--accent-glow);
+      }
+
+      .hero-stat-label {
+        font-size: 0.75rem;
+        color: var(--gray-400);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 4px;
+      }
+
+      .hero-divider {
+        width: 1px;
+        background: var(--card-border);
+        align-self: stretch;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent);
+        color: var(--white);
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 14px 32px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.3s;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 1s forwards;
+      }
+
+      .hero-cta:hover {
+        background: var(--accent-bright);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
+      }
+
+      .hero-right {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        opacity: 0;
+        animation: fadeIn 1s ease 1.2s forwards;
+      }
+
+      .profile-ring {
+        width: 280px;
+        height: 280px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-ring::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          var(--accent),
+          var(--teal),
+          var(--accent-glow),
+          var(--accent)
+        );
+        animation: spin 8s linear infinite;
+      }
+
+      .profile-inner {
+        width: 272px;
+        height: 272px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .profile-initials {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1;
+      }
+
+      .profile-dept {
+        font-size: 0.72rem;
+        color: var(--accent-glow);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: "DM Mono", monospace;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── SECTION WRAPPER ── */
+      section {
+        position: relative;
+        z-index: 1;
+        padding: 100px 48px;
+      }
+
+      .section-header {
+        margin-bottom: 34px;
+      }
+
+      .section-label {
+        font-family: "DM Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--accent-glow);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .section-label::after {
+        content: "";
+        flex: 1;
+        max-width: 60px;
+        height: 1px;
+        background: linear-gradient(to right, var(--accent-glow), transparent);
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--white);
+      }
+
+      .section-title em {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(96, 165, 250, 0.5);
+        font-style: normal;
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        background: linear-gradient(
+          180deg,
+          var(--navy) 0%,
+          var(--navy-mid) 100%
+        );
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+
+      .about-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 40px;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.08),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+
+      .about-card:hover {
+        border-color: rgba(96, 165, 250, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .about-card:hover::before {
+        opacity: 1;
+      }
+
+      .about-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--gray-400);
+        margin-bottom: 32px;
+      }
+
+      .about-text strong {
+        color: var(--white);
+      }
+
+      .about-responsibilities h4 {
+        font-size: 0.8rem;
+        color: var(--accent-glow);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+        font-family: "DM Mono", monospace;
+      }
+
+      .resp-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--card-border);
+        font-size: 0.9rem;
+        color: var(--gray-400);
+      }
+
+      .resp-item:last-child {
+        border-bottom: none;
+      }
+
+      .resp-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent-bright);
+        margin-top: 6px;
+        flex-shrink: 0;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .info-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--card-border);
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .info-item-label {
+        font-size: 0.7rem;
+        color: var(--gray-400);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 6px;
+        font-family: "DM Mono", monospace;
+      }
+
+      .info-item-value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--white);
+      }
+
+      /* ── KEY CONTRIBUTIONS ── */
+      #contributions {
+        background: var(--navy-mid);
+      }
+
+      .contributions-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .contrib-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 32px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contrib-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--teal));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+      }
+
+      .contrib-card:hover {
+        border-color: rgba(37, 99, 235, 0.4);
+        transform: translateY(-6px);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(37, 99, 235, 0.1);
+      }
+
+      .contrib-card:hover::after {
+        transform: scaleX(1);
+      }
+
+      .contrib-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.2),
+          rgba(14, 165, 233, 0.15)
+        );
+        border: 1px solid rgba(37, 99, 235, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+
+      .contrib-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .contrib-desc {
+        font-size: 0.875rem;
+        color: var(--gray-400);
+        line-height: 1.7;
+      }
+
+      /* ── SYSTEMS ── */
+      #systems {
+        background: var(--navy);
+      }
+
+      .systems-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+
+      .systems-timeline::before {
+        content: "";
+        position: absolute;
+        left: 28px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          var(--accent),
+          var(--teal),
+          transparent
+        );
+      }
+
+      .system-item {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 28px;
+        padding: 32px 0;
+        border-bottom: 1px solid var(--card-border);
+        transition: all 0.3s;
+      }
+
+      .system-item:last-child {
+        border-bottom: none;
+      }
+
+      .system-number {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--teal));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--white);
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+        box-shadow:
+          0 0 0 6px var(--navy),
+          0 0 0 8px rgba(37, 99, 235, 0.2);
+        transition: all 0.3s;
+      }
+
+      .system-item:hover .system-number {
+        box-shadow:
+          0 0 0 6px var(--navy),
+          0 0 0 10px rgba(37, 99, 235, 0.4);
+        transform: scale(1.05);
+      }
+
+      .system-content {
+        padding-top: 12px;
+      }
+
+      .system-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 8px;
+      }
+
+      .system-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .tag {
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+      }
+
+      .tag-blue {
+        background: rgba(37, 99, 235, 0.15);
+        border: 1px solid rgba(37, 99, 235, 0.3);
+        color: var(--accent-glow);
+      }
+
+      .tag-teal {
+        background: rgba(14, 165, 233, 0.15);
+        border: 1px solid rgba(14, 165, 233, 0.3);
+        color: #7dd3fc;
+      }
+
+      .tag-gold {
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        color: #fcd34d;
+      }
+
+      .system-problem {
+        margin-bottom: 10px;
+        font-size: 0.875rem;
+        color: var(--gray-400);
+        line-height: 1.7;
+      }
+
+      .system-problem strong {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      .system-solution strong {
+        color: #4ade80;
+        font-weight: 600;
+      }
+
+      .system-solution {
+        font-size: 0.875rem;
+        color: var(--gray-400);
+        line-height: 1.7;
+      }
+
+      .system-features {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .feature-pill {
+        font-size: 0.78rem;
+        background: rgba(74, 222, 128, 0.08);
+        border: 1px solid rgba(74, 222, 128, 0.2);
+        color: #86efac;
+        padding: 4px 12px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .feature-pill::before {
+        content: "✓";
+        font-size: 0.65rem;
+        color: #4ade80;
+      }
+
+      /* ── SKILLS ── */
+      #skills {
+        background: var(--navy-mid);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .skill-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 28px 24px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: default;
+      }
+
+      .skill-card:hover {
+        background: rgba(37, 99, 235, 0.08);
+        border-color: rgba(96, 165, 250, 0.35);
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+
+      .skill-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 12px;
+      }
+
+      .skill-bar-track {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .skill-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--teal));
+        width: 0;
+        transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* ── IMPACT ── */
+      #impact {
+        background: var(--navy);
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+      }
+
+      .impact-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 36px 28px;
+        text-align: center;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .impact-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(37, 99, 235, 0.05) 60deg,
+          transparent 120deg
+        );
+        animation: rotate 12s linear infinite;
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+
+      .impact-card:hover::before {
+        opacity: 1;
+      }
+
+      @keyframes rotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .impact-card:hover {
+        border-color: rgba(37, 99, 235, 0.35);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      .impact-emoji {
+        font-size: 2.4rem;
+        margin-bottom: 16px;
+      }
+
+      .impact-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .impact-desc {
+        font-size: 0.8rem;
+        color: var(--gray-400);
+        line-height: 1.6;
+      }
+
+      /* ── FUTURE GOALS ── */
+      #goals {
+        background: var(--navy-mid);
+      }
+
+      .goals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .goal-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 36px 28px;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .goal-card:hover {
+        border-color: rgba(245, 158, 11, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      .goal-number {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 900;
+        color: rgba(37, 99, 235, 0.1);
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        line-height: 1;
+        transition: color 0.4s;
+      }
+
+      .goal-card:hover .goal-number {
+        color: rgba(245, 158, 11, 0.15);
+      }
+
+      .goal-icon {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+      }
+
+      .goal-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .goal-desc {
+        font-size: 0.85rem;
+        color: var(--gray-400);
+        line-height: 1.7;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--navy);
+        border-top: 1px solid var(--card-border);
+        padding: 40px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .footer-left {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .footer-left span {
+        color: var(--accent-glow);
+      }
+
+      .footer-right {
+        font-family: "DM Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--gray-400);
+        letter-spacing: 1px;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        section {
+          padding: 70px 24px;
+        }
+        #hero {
+          padding: 100px 24px 60px;
+        }
+        .hero-right {
+          display: none;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          text-align: center;
+        }
+        .hero-stats {
+          gap: 20px;
+        }
+        .hero-stat-number {
+          font-size: 1.8rem;
+        }
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--navy);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(var(--accent), var(--teal));
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">Vishwa <span>Gami</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#contributions">Contributions</a></li>
+        <li><a href="#systems">Systems</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#goals">Goals</a></li>
+      </ul>
+      <div class="nav-badge">2026 Appraisal</div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-grid-bg"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Performance Portfolio · FY 2026</div>
+        <h1 class="hero-name">
+          Vishwa<br />
+          <span class="line-2">Gami</span>
+        </h1>
+        <p class="hero-role">
+          <strong>Data Analyst</strong> · Automation &amp; Analytics Specialist
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">7<span>+</span></div>
+            <div class="hero-stat-label">Systems Built</div>
+          </div>
+          <!-- <div class="hero-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">7</div>
+            <div class="hero-stat-label">Languages Automated</div>
+          </div> -->
+          <div class="hero-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">5<span>+</span></div>
+            <div class="hero-stat-label">Integrations</div>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">∞</div>
+            <div class="hero-stat-label">Hours Saved</div>
+          </div>
+        </div>
+        <a href="#about" class="hero-cta">
+          View Portfolio
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M3 8H13M13 8L9 4M13 8L9 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="hero-right">
+        <div class="profile-ring">
+          <div class="profile-inner">
+            <div class="profile-initials">VG</div>
+            <div class="profile-dept">Data Analyst</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header reveal">
+        <div class="section-label">01 — Who I Am</div>
+        <h2 class="section-title">About <em>Me</em></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card reveal reveal-delay-1">
+          <p class="about-text">
+            A <strong>data-driven professional</strong> focused on automation,
+            analytics, and system improvement. I specialize in building
+            efficient workflows using
+            <strong>Excel, Google Sheets, and web technologies</strong> to
+            reduce manual effort and improve operational efficiency.<br /><br />
+          </p>
+          <div class="about-responsibilities">
+            <h4>Current Responsibilities</h4>
+            <div class="resp-item">
+              <div class="resp-dot"></div>
+              <span>Maintaing Bank Onboarding Status of all 250+ banks</span>
+            </div>
+            <div class="resp-item">
+              <div class="resp-dot"></div>
+              <span>Handling email and WhatsApp queries of all banks</span>
+            </div>
+            <div class="resp-item">
+              <div class="resp-dot"></div>
+              <span
+                >Managing internal EKCC data processes like updating LOV and LGD
+                data.
+              </span>
+            </div>
+            <div class="resp-item">
+              <div class="resp-dot"></div>
+              <span
+                >In AWS, upload data of banks and delete farmer n all that type
+                of working on it.
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="about-card reveal reveal-delay-2">
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-item-label">Role</div>
+              <div class="info-item-value">Data Analyst</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Specialization</div>
+              <div class="info-item-value">Automation</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Primary Stack</div>
+              <div class="info-item-value">Sheets + JS</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Integrations</div>
+              <div class="info-item-value">Teams · Gmail</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Tools Built</div>
+              <div class="info-item-value">7+ Systems</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Approach</div>
+              <div class="info-item-value">Problem-First</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Attitude</div>
+              <div class="info-item-value">Proactive</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Next Goal</div>
+              <div class="info-item-value">DBA Role</div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- KEY CONTRIBUTIONS -->
+    <section id="contributions">
+      <div class="section-header reveal">
+        <div class="section-label">02 — What I've Delivered</div>
+        <h2 class="section-title">Key <em>Contributions</em></h2>
+      </div>
+      <div class="contributions-list">
+        <div class="contrib-card reveal reveal-delay-1">
+          <div class="contrib-icon">⚙️</div>
+          <div class="contrib-title">Multiple Automation Systems</div>
+          <div class="contrib-desc">
+            Built multiple automation systems using Google Sheets and Excel that
+            have transformed repetitive manual workflows into single-click
+            operations.
+          </div>
+        </div>
+        <div class="contrib-card reveal reveal-delay-2">
+          <div class="contrib-icon">🔗</div>
+          <div class="contrib-title">Cross-Platform Integrations</div>
+          <div class="contrib-desc">
+            Integrated Google Sheets with Microsoft Teams, Outlook, Gmail, and
+            Google Drive — creating seamless data flows across the
+            organization's tool stack.
+          </div>
+        </div>
+        <div class="contrib-card reveal reveal-delay-3">
+          <div class="contrib-icon">🛠️</div>
+          <div class="contrib-title">Internal Tooling Development</div>
+          <div class="contrib-desc">
+            Developed internal tools that measurably reduced manual work and
+            improved team efficiency, giving time back to every department that
+            uses them.
+          </div>
+        </div>
+        <div class="contrib-card reveal reveal-delay-4">
+          <div class="contrib-icon">🌐</div>
+          <div class="contrib-title">Web Tools with Sheets Backend</div>
+          <div class="contrib-desc">
+            Created internal web tools using HTML, CSS, and JavaScript with
+            Google Sheets as a live backend — lightweight, deployable, and zero
+            infrastructure cost.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEMS BUILT -->
+    <section id="systems">
+      <div class="section-header reveal">
+        <div class="section-label">03 — What I've Built</div>
+        <h2 class="section-title">Systems &amp; <em>Automations</em></h2>
+      </div>
+      <div class="systems-timeline">
+        <div class="system-item reveal">
+          <div class="system-number">1</div>
+          <div class="system-content">
+            <div class="system-name">Circular Management System</div>
+            <div class="system-tags">
+              <span class="tag tag-blue">HTML · CSS · JS</span>
+              <span class="tag tag-teal">API</span>
+              <span class="tag tag-gold">Google Sheets</span>
+            </div>
+            <p
+              class="system-desc"
+              style="
+                font-size: 0.875rem;
+                color: var(--gray-400);
+                line-height: 1.7;
+              "
+            >
+              A complete frontend interface backed by Google Sheets API for
+              managing and distributing internal circulars across the
+              organization — structured, searchable, and always up-to-date.
+            </p>
+          </div>
+        </div>
+
+        <div class="system-item reveal">
+          <div class="system-number">2</div>
+          <div class="system-content">
+            <div class="system-name">Virtual Notice Board</div>
+            <div class="system-tags">
+              <span class="tag tag-blue">HTML · CSS · JS</span>
+              <span class="tag tag-teal">API</span>
+              <span class="tag tag-gold">Google Sheets</span>
+            </div>
+            <p
+              class="system-desc"
+              style="
+                font-size: 0.875rem;
+                color: var(--gray-400);
+                line-height: 1.7;
+              "
+            >
+              A digital notice board built with HTML, CSS, and JavaScript
+              connected with Google Sheets backend to manage and display
+              internal notices — replacing physical boards with a live digital
+              display.
+            </p>
+          </div>
+        </div>
+
+        <div class="system-item reveal">
+          <div class="system-number">3</div>
+          <div class="system-content">
+            <div class="system-name">Multilingual Translation Automation</div>
+            <div class="system-tags">
+              <span class="tag tag-blue">Automation</span>
+              <span class="tag tag-teal">Google API</span>
+              <span class="tag tag-gold">7 Languages</span>
+            </div>
+            <p class="system-problem">
+              <strong>Problem:</strong> Developers frequently needed translation
+              data which previously required manual work and take to much time
+              to translate.
+            </p>
+            <p class="system-solution">
+              <strong>Solution:</strong> Created an automated translation system
+              supporting 7 languages, enabling developers to instantly generate
+              translations whenever needed — zero wait time.
+            </p>
+          </div>
+        </div>
+
+        <div class="system-item reveal">
+          <div class="system-number">4</div>
+          <div class="system-content">
+            <div class="system-name">
+              Internal Web Portal for Links &amp; Data
+            </div>
+            <div class="system-tags">
+              <span class="tag tag-blue">Web Portal</span>
+              <span class="tag tag-teal">Centralized Access</span>
+            </div>
+            <p class="system-problem">
+              <strong>Problem:</strong> Important links and resources were
+              scattered across tools and difficult to locate, costing teams time
+              every day.
+            </p>
+            <p class="system-solution">
+              <strong>Solution:</strong> Built a centralized internal web portal
+              where all important links, Figma designs, and resources are stored
+              and accessible in one unified place.
+            </p>
+          </div>
+        </div>
+
+        <div class="system-item reveal">
+          <div class="system-number">5</div>
+          <div class="system-content">
+            <div class="system-name">
+              Employee Absence Status Notification System
+            </div>
+            <div class="system-tags">
+              <span class="tag tag-blue">Google Sheets</span>
+              <span class="tag tag-teal">Microsoft Teams</span>
+              <span class="tag tag-gold">1-Click</span>
+            </div>
+            <p class="system-problem">
+              <strong>Problem:</strong> Daily absence notifications were
+              manually sent in Teams which took unnecessary time.
+            </p>
+            <p class="system-solution">
+              <strong>Solution:</strong> Created a system where HR should do
+              just marked absent in Google Sheets and with one click the
+              notification automatically posts in Microsoft Teams.
+            </p>
+          </div>
+        </div>
+
+        <div class="system-item reveal">
+          <div class="system-number">6</div>
+          <div class="system-content">
+            <div class="system-name">Payslip Automation System +++</div>
+            <div class="system-tags">
+              <span class="tag tag-blue">Payroll</span>
+              <span class="tag tag-teal">Email Integration</span>
+              <span class="tag tag-gold">HR Automation</span>
+              <span class="tag tag-gold">Google Drive</span>
+            </div>
+            <p
+              class="system-desc"
+              style="
+                font-size: 0.875rem;
+                color: var(--gray-400);
+                line-height: 1.7;
+                margin-bottom: 12px;
+              "
+            >
+              Developed a payslip generation system integrated with attendance
+              data, eliminating all manual HR calculations.
+            </p>
+            <div class="system-features">
+              <span class="feature-pill">Automatic salary calculation</span>
+              <span class="feature-pill">Monthly payslip generation</span>
+              <span class="feature-pill">Auto email to employees</span>
+              <span class="feature-pill">Payslip Stored Month-wise</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-item reveal">
+          <div class="system-number">7</div>
+          <div class="system-content">
+            <div class="system-name">Leave Management System</div>
+            <div class="system-tags">
+              <span class="tag tag-gold">Ready for Deployment</span>
+              <span class="tag tag-blue">Workflow</span>
+            </div>
+            <p
+              class="system-desc"
+              style="
+                font-size: 0.875rem;
+                color: var(--gray-400);
+                line-height: 1.7;
+              "
+            >
+              A leave management workflow where employees can apply for leave
+              and approvals automatically update the leave balance — built,
+              tested, and ready to go live.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header reveal">
+        <div class="section-label">04 — My Toolkit</div>
+        <h2 class="section-title">Skills &amp; <em>Technologies</em></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal reveal-delay-1" data-level="92">
+          <div class="skill-icon">📊</div>
+          <div class="skill-name">Excel Automation</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2" data-level="100">
+          <div class="skill-icon">🔧</div>
+          <div class="skill-name">Google Sheets Automation</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3" data-level="95">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">HTML / CSS</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-4" data-level="80">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1" data-level="88">
+          <div class="skill-icon">🔌</div>
+          <div class="skill-name">API Integration</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2" data-level="90">
+          <div class="skill-icon">💬</div>
+          <div class="skill-name">Microsoft Teams Integration</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3" data-level="93">
+          <div class="skill-icon">🤖</div>
+          <div class="skill-name">Workflow Automation</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-4" data-level="85">
+          <div class="skill-icon">📈</div>
+          <div class="skill-name">Data Analysis</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1" data-level="78">
+          <div class="skill-icon">🗄️</div>
+          <div class="skill-name">Database Fundamentals</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact">
+      <div class="section-header reveal">
+        <div class="section-label">05 — The Difference Made</div>
+        <h2 class="section-title">Impact <em>Created</em></h2>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card reveal reveal-delay-1">
+          <div class="impact-emoji">⏱️</div>
+          <div class="impact-title">Reduced Manual Repetitive Tasks</div>
+          <div class="impact-desc">
+            Automation systems have eliminated hours of daily manual work across
+            HR, communications, and data management.
+          </div>
+        </div>
+        <div class="impact-card reveal reveal-delay-2">
+          <div class="impact-emoji">🚀</div>
+          <div class="impact-title">Improved Operational Efficiency</div>
+          <div class="impact-desc">
+            Streamlined workflows mean teams spend more time on valuable work
+            and less time on process overhead.
+          </div>
+        </div>
+        <div class="impact-card reveal reveal-delay-3">
+          <div class="impact-emoji">⚡</div>
+          <div class="impact-title">Faster Internal Communication</div>
+          <div class="impact-desc">
+            Teams notifications, notice boards, and circulars now happen
+            instantly instead of being delayed by manual processes.
+          </div>
+        </div>
+        <div class="impact-card reveal reveal-delay-4">
+          <div class="impact-emoji">🗂️</div>
+          <div class="impact-title">Centralized Internal Data Access</div>
+          <div class="impact-desc">
+            One unified portal gives everyone in the organization instant access
+            to resources, links, and Figma designs.
+          </div>
+        </div>
+        <div class="impact-card reveal reveal-delay-2">
+          <div class="impact-emoji">🏢</div>
+          <div class="impact-title">Automated HR &amp; Admin Processes</div>
+          <div class="impact-desc">
+            Payslip generation, attendance tracking, and leave management now
+            run automatically with minimal human intervention.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURE GOALS -->
+    <section id="goals">
+      <div class="section-header reveal">
+        <div class="section-label">06 — Looking Ahead</div>
+        <h2 class="section-title">Future <em>Goals</em></h2>
+      </div>
+      <div class="goals-grid">
+        <div class="goal-card reveal reveal-delay-1">
+          <div class="goal-number">01</div>
+          <div class="goal-icon">⏰</div>
+          <div class="goal-title">Punch In / Punch Out Automation</div>
+          <div class="goal-desc">
+            Implement a full Punch In / Punch Out automation system within the
+            BankBenchers application to streamline attendance tracking at scale.
+          </div>
+        </div>
+        <div class="goal-card reveal reveal-delay-2">
+          <div class="goal-number">02</div>
+          <div class="goal-icon">🔄</div>
+          <div class="goal-title">Advance Internal Automations</div>
+          <div class="goal-desc">
+            Continue improving existing internal automation systems — adding
+            more integrations, better error handling, and expanded capabilities.
+          </div>
+        </div>
+        <div class="goal-card reveal reveal-delay-3">
+          <div class="goal-number">03</div>
+          <div class="goal-icon">🗄️</div>
+          <div class="goal-title">Database Administration</div>
+          <div class="goal-desc">
+            Learn and contribute in a Database Administration (DBA) role —
+            expanding technical depth beyond automation into data
+            infrastructure.
+          </div>
+        </div>
+        <div class="goal-card reveal reveal-delay-4">
+          <div class="goal-number">04</div>
+          <div class="goal-icon">🏗️</div>
+          <div class="goal-title">Support Infrastructure Operations</div>
+          <div class="goal-desc">
+            Support infrastructure and database operations as a junior DBA if
+            given the opportunity — contributing to the foundation that all
+            systems run on.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">
+        Vishwa <span>Gami</span> · Performance Portfolio
+      </div>
+      <div class="footer-right">DATA ANALYST · FY 2026 APPRAISAL</div>
+    </footer>
+
+    <script>
+      // Intersection Observer for reveal animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              // Animate skill bars
+              const bar = entry.target.querySelector(".skill-bar-fill");
+              if (bar) {
+                const level = entry.target.dataset.level;
+                setTimeout(() => {
+                  bar.style.width = level + "%";
+                }, 200);
+              }
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll(".skill-card")
+        .forEach((el) => observer.observe(el));
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 60) {
+          nav.style.padding = "12px 48px";
+        } else {
+          nav.style.padding = "18px 48px";
+        }
+      });
+
+      // Animated counter for hero stats
+      function animateCounters() {
+        document.querySelectorAll(".hero-stat-number").forEach((el) => {
+          const text = el.textContent;
+          if (text === "∞") return;
+          const num = parseInt(text);
+          if (isNaN(num)) return;
+          const suffix = text.replace(/[0-9]/g, "");
+          let current = 0;
+          const increment = num / 40;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= num) {
+              el.textContent =
+                num + suffix.replace("<span>", "").replace("</span>", "");
+              el.innerHTML =
+                num + (suffix ? `<span>${suffix.trim()}</span>` : "");
+              clearInterval(timer);
+            } else {
+              el.textContent = Math.floor(current);
+            }
+          }, 40);
+        });
+      }
+
+      setTimeout(animateCounters, 1200);
+    </script>
+  </body>
+</html>
